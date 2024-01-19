@@ -1,0 +1,102 @@
+:root{
+    --cor-fundo: #282828;
+    --cor-fundo-formulario: #242424;
+    --cor-fundo-input: #35373b;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100%;
+    height: 100%;
+    font-family: Poppins;
+}
+
+.Container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    min-width: 100vw;
+    background-color: var(--cor-fundo)
+}
+
+
+.login{
+    background-color: var(--cor-fundo-formulario);
+    width: 400px;
+    height: 470px;
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.login form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding-top: 10px;
+    gap: 10px;
+}
+
+.login input{
+    margin-top: 5px;
+    background-color: var(--cor-fundo-input);  
+    height: 40px;
+    outline: none;
+    padding-left: 8px;
+    color: white;
+    font-size: 20px;
+}
+
+.login img{
+    width: 220px;
+    height: auto;
+}
+
+.form-control {
+    margin-bottom: 10px;
+    position: relative;
+}
+
+.form-control input {
+    border: 2px solid #3E445B;
+    border: none;
+    outline: none;
+    display: block;
+    font-size: 17px;
+    width: 100%;
+}
+
+.form-control.error input {
+    border: 2px solid #DB5A5A;
+}
+
+.form-control.error small{
+    color: #DB5A5A;
+    visibility: visible;
+}
+
+.form-control small {
+    visibility: hidden;
+    position: absolute;
+    margin-top: 5px;
+    font-size: 14px;
+}
+
+.form button {
+    background-color: rgb(44, 44, 171);
+    border: none;
+    color: white;
+    font-weight: bold;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 15px;
+    margin-top: 20px;
+}
