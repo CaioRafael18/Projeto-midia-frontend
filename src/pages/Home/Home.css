@@ -5,18 +5,13 @@ body {
 :root{
     --fonte-principal: sans-serif;
     --cinza-claro: #d3d1d1;
-    --azul-escuro:  #2f2f2f;
+    --cinza-escuro:  #2f2f2f;
     --azul-medio: #3970BE;
 }
 
 *{
     margin: 0;
     padding: 0;
-}
-
-.cabecalho__imagem{
-    margin-top: 0px;
-    width: 100px;
 }
 
 .section{
@@ -33,10 +28,6 @@ body {
     text-transform: uppercase;
     font-family: var(--fonte-principal);
     font-size: 45px;
-}
-
-.section__img{
-    width: 20px;
 }
 
 .box{
@@ -68,8 +59,21 @@ body {
 
 .box_item{
     padding: 20px;
-    list-style-type: none;  
+    list-style-type: none; 
+    display: flex;
+    flex-direction: column; 
     width: 92%;
+    border-bottom: 1px solid var(--cinza-escuro)
+}
+
+.categoria{
+    padding: 5px;
+    font-size: 14px;
+    width: 115px;
+    background-color: rgb(205, 202, 202);
+    color: rgb(142, 131, 131);
+    border-radius: 10px;
+    text-align: center;
 }
 
 .box a{
@@ -85,8 +89,8 @@ body {
     font-weight: bolder;
 }
 
-.arquivos h3{
-    padding-left: 30px;
+.h3_texto{
+    padding-left: 42px;
 }
 
 .arquivos{
@@ -131,7 +135,7 @@ body {
 }
 
 .botao_arquivo{
-    background-color: var(--azul-escuro);
+    background-color: var(--cinza-escuro);
     border: none;
     padding: 5px;
     color: white;
@@ -139,6 +143,7 @@ body {
 
 .pesquisa{
     display: flex;
+    padding-left: 30px;
 }
 
 .arquivos_pesquisa{
@@ -149,7 +154,8 @@ body {
 }
 
 .botao_lupa{
-    border: 1px solid var(--cinza-claro)
+    border: 1px solid var(--cinza-claro);
+    height: 30px;
 }
 
 .pesquisa img{
@@ -158,11 +164,12 @@ body {
 
 .rodape{
     margin-top: 15px;
-    background-color: var(--azul-escuro);
+    background-color: var(--cinza-escuro);
     width: 100vw;
     height: 100px;
 }
 
-.pagination{
-    margin-top: 30px;
+.paginacao{
+    display: flex;
+    justify-content: center;
 }

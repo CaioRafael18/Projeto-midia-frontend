@@ -8,7 +8,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-}
+  }
 
 body {
     width: 100%;
@@ -24,7 +24,6 @@ body {
     min-width: 100vw;
     background-color: var(--cor-fundo)
 }
-
 
 .login{
     background-color: var(--cor-fundo-formulario);
@@ -60,12 +59,13 @@ body {
     height: auto;
 }
 
-.form-control {
+
+.login .form-control {
     margin-bottom: 10px;
     position: relative;
 }
 
-.form-control input {
+.login .form-control-input input {
     border: 2px solid #3E445B;
     border: none;
     outline: none;
@@ -74,23 +74,23 @@ body {
     width: 100%;
 }
 
-.form-control.error input {
+.login .form-control-input.error-input input {
     border: 2px solid #DB5A5A;
 }
 
-.form-control.error small{
+.login .form-control-input.error-input small {
     color: #DB5A5A;
     visibility: visible;
 }
 
-.form-control small {
+.login .form-control small {
     visibility: hidden;
     position: absolute;
     margin-top: 5px;
     font-size: 14px;
 }
 
-.form button {
+.login .form button {
     background-color: rgb(44, 44, 171);
     border: none;
     color: white;
@@ -98,5 +98,5 @@ body {
     padding: 10px;
     cursor: pointer;
     font-size: 15px;
-    margin-top: 20px;
+    margin-top: 5px;
 }
