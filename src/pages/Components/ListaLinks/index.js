@@ -1,14 +1,23 @@
 import React, { useState } from 'react'
-import { TiDelete } from "react-icons/ti";
+import iconeDelete from '../../image/icone-lixeira.png'
 
 const ListaLinks = ({data, handleDelete}) => {
   return (
     <>
     <li className="box_item">
-      <TiDelete onClick={() => handleDelete(data._id)} />
-      <a href={data.descricao} target="_blank" title={data.title}>
+      <div className='box_descricao'>
+        <a  href={data.descricao} target="_blank">
           <strong>{data.title}</strong> 
-      </a>
+        </a>
+        
+        <img 
+          className='iconeDelete'
+          src={iconeDelete} 
+          onClick={() => handleDelete(data._id)}
+        >
+        </img>
+      </div>
+
       <div className='box_tag'>
         <span className='categoria'>{data.mes}</span>  
       </div>

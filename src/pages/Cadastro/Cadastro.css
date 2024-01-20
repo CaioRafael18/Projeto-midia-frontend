@@ -1,6 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
 
-*{
-    font-family: var(--fonte-principal);
+body.cadastro{
+    background-image: url(../image/fundo-home.jpeg);
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    overflow-x: hidden;
+    font-family: 'Montserrat', sans-serif;   
 }
 
 .container__formulario {
@@ -15,7 +21,7 @@
 .formulario__titulo {
     font-weight: bold;
     font-size: 21px;
-    font-family: var(--fonte-principal);
+    
 }
 
 .formulario__campo{
@@ -27,15 +33,13 @@
     width: 50vw;
     display: block;
     margin-top: 5px;
-    background-color: #e2e7f3;
-    border: none;
     height: 40px;
     outline: none;
-    border-radius: 5px;
+    border: 2px solid black;
+    border-radius: 15px;
     padding-left: 8px;
     font-size: 20px;
 }
-
 
 .campo__etiqueta {
     font-size: 20px;
@@ -46,10 +50,11 @@
     padding: 1em 3em;
     margin: 2em 0;
     display: block;
-    background-color: rgb(44, 44, 171);
+    background-color: rgb(72, 72, 79);
     font-size: 20px;
     text-transform: uppercase;
     font-weight: bold;
     color: white;
-    border: none;
+    border-radius: 40px;
+    outline: none;
 }

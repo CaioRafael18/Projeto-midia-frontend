@@ -1,6 +1,4 @@
-body {
-    overflow-x: hidden;
-}
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
 
 :root{
     --fonte-principal: sans-serif;
@@ -9,29 +7,43 @@ body {
     --azul-medio: #3970BE;
 }
 
-*{
+body.home{
+    background-image: url(../image/fundo-home.jpeg);
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+    overflow-x: hidden;
 }
 
 .section{
-    background-color: #282828;
+    background-color: black;
     width: 100vw;
-    padding: 5% 0px;
-    display: flex;
-    justify-content: center;
+    height: 200px;
 }
 
 .section_item{
     font-weight: bold;
     color: #FFF;
     text-transform: uppercase;
-    font-family: var(--fonte-principal);
+    font-family: 'Montserrat', sans-serif;   
     font-size: 45px;
 }
 
+.logo_home{
+    padding-left: 20px;
+}
+
+.section img{
+    height: 100px;
+    width: 100px;
+}
+
+.section_texto{
+    display: flex;
+    justify-content: center;
+}
+
 .box{
-    /* background-color: aliceblue; */
     display: flex;
     width: 100%;
     height: 85em;
@@ -39,7 +51,6 @@ body {
 }
 
 .box_grupo{
-    /* background-color: aliceblue; */
     display: flex;
     flex-direction: column;
     margin-top: 2%;
@@ -48,12 +59,10 @@ body {
 }
 
 .box_lista{
-    /* background-color: rgb(15, 23, 30); */
     height: 100%;
     font-size: 2em;
     text-transform: uppercase;
     font-family: var(--fonte-principal);
-    /* padding: 20px 0px; */
     margin-left: 170px;
 }
 
@@ -63,20 +72,35 @@ body {
     display: flex;
     flex-direction: column; 
     width: 92%;
-    border-bottom: 1px solid var(--cinza-escuro)
+    border-bottom: 1px solid var(--cinza-escuro);
+    height: 140px;
+}
+
+.box_descricao{
+    margin-top: 30px;
+    display: flex;
+    align-items: center;
+    height: 30px;
+    gap: 628px;
+}
+
+.iconeDelete{
+    width: 100px;
+    height: 100px;
 }
 
 .categoria{
+    font-family: 'Montserrat', sans-serif;   
     padding: 5px;
-    font-size: 14px;
+    font-size: 15px;
     width: 115px;
-    background-color: rgb(205, 202, 202);
-    color: rgb(142, 131, 131);
+    color: black;
+    border: 2px solid black;
     border-radius: 10px;
     text-align: center;
 }
 
-.box a{
+.box a{ 
     color: #3C3955;
     text-decoration: none;
 }
@@ -87,14 +111,11 @@ body {
 
 .box strong{
     font-weight: bolder;
+    font-family: 'Montserrat', sans-serif;  
 }
 
-.h3_texto{
-    padding-left: 42px;
-}
 
 .arquivos{
-    /* background-color: var(--cinza-claro); */
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -102,7 +123,14 @@ body {
     width: 200px;
     height: 800px;
     margin-top: 60px;
-    font-family: var(--fonte-principal);
+    font-family: 'Montserrat', sans-serif;  
+    align-items: center;
+}
+
+.h3_texto{
+    padding-left: 42px;
+    font-weight: bold;
+    font-family: 'Montserrat', sans-serif;   
 }
 
 .arquivos_lista{
@@ -124,47 +152,49 @@ body {
     display: flex;
     list-style-type: none;  
     width: 100%;
-    border: 1px solid var(--cinza-claro);
+    border: 2px solid var(--cinza-claro);
     border-bottom: 1px solid var(--cinza-claro);
 }
 
-.box_botao{
-    display: flex;
-    padding-left: 10px;
-    height: 30px;
-}
-
-.botao_arquivo{
-    background-color: var(--cinza-escuro);
-    border: none;
-    padding: 5px;
-    color: white;
-}
 
 .pesquisa{
     display: flex;
-    padding-left: 30px;
+    padding-left: 10px;
+    gap: 10px;
+    align-items: center;
 }
 
 .arquivos_pesquisa{
     height: 30px;
     width: 100%;
+    padding-left: 10px;
     outline: none;
-    border: 1px solid var(--cinza-claro)
+    border: 2px solid black;
+    border-radius: 10px;
+    background-image: url(../image/search.png);
+    background-size: 20px 20px;
+    background-position: 130px center;
+    background-repeat: no-repeat;
 }
 
-.botao_lupa{
-    border: 1px solid var(--cinza-claro);
-    height: 30px;
-}
-
-.pesquisa img{
+.box_botao{
     width: 20px;
-}   
+}
+
+.botao_arquivo{
+    background-image: url(../image/botao-cadastro.png);
+    background-repeat: no-repeat;
+    width: 50px;
+    height: 50px;
+}
+
+.botao_arquivo:hover{
+    cursor: pointer;
+}
 
 .rodape{
     margin-top: 15px;
-    background-color: var(--cinza-escuro);
+    background-color: black;
     width: 100vw;
     height: 100px;
 }
@@ -173,3 +203,14 @@ body {
     display: flex;
     justify-content: center;
 }
+
+.paginacao .page-link{
+    background-color: rgb(171, 169, 169);
+    border: 1px solid rgb(103, 102, 102);
+}
+
+.paginacao .page-link:first-child,
+.paginacao .page-link:last-child {
+  color: rgb(0, 0, 0) /* Cor das setas Next e Prev */
+}
+

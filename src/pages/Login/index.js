@@ -1,6 +1,7 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './Login.css'
-import Logo from '../image/logosara.png'
+import botaoEntrar from '../image/botao-entrar.png'
+import LogoSara from '../image/LOGO_SARA GUARABIRA_preta.png'
 import { useNavigate } from 'react-router-dom'
 
 const Login = () => {
@@ -9,6 +10,14 @@ const Login = () => {
   const [autenticando, setAutenticando] = useState(false)
   const navigate = useNavigate()
 
+  useEffect(() => {
+    document.body.classList.add('login');
+
+    return () => {
+      document.body.classList.remove('login');
+    };
+  }, []);
+
   function handleLogin(e){
     e.preventDefault();
     if(usuario === 'saraguarabira' && senha === 'guarabira'){
@@ -16,13 +25,15 @@ const Login = () => {
     }else{
       setAutenticando(true)
     }
+
+    document.body.classList.add('login');
   }
 
   return (
     <div className='Container'> 
       <div className="login">
         <div className="image_login">
-            <img src={Logo} alt='Logo da Sara'/>
+            <img src={LogoSara} alt='Logo da Sara'/>
         </div>
 
         <form className="form" id="form" method="post" onSubmit={handleLogin}>
@@ -44,9 +55,12 @@ const Login = () => {
                 />
                 {autenticando && <small>Usuário ou senha incorreta</small>}
             </div>
-            <button 
-              type="submit" 
-            >ENTRAR</button>
+            <img
+              src={botaoEntrar}
+              alt="Botão Entrar"
+              className="botao-entrar"
+              onClick={handleLogin}
+            />
         </form> 
       </div>
     </div>

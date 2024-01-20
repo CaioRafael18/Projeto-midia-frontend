@@ -1,19 +1,12 @@
-:root{
-    --cor-fundo: #282828;
-    --cor-fundo-formulario: #242424;
-    --cor-fundo-input: #35373b;
-}
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
 
-* {
+body.login {
+    width: 100%;
+    height: 100%;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-  }
-
-body {
-    width: 100%;
-    height: 100%;
-    font-family: Poppins;
+    background-image: url('../image/Imagem-fundo-black.jpg');    
 }
 
 .Container{
@@ -22,57 +15,55 @@ body {
     align-items: center;
     height: 100vh;
     min-width: 100vw;
-    background-color: var(--cor-fundo)
 }
 
 .login{
-    background-color: var(--cor-fundo-formulario);
+    background-color: white;
     width: 400px;
     height: 470px;
     padding: 20px;
-    border-radius: 10px;
+    border-radius: 30px;
     display: flex;
     flex-direction: column;
     align-items: center;
+
 }
 
 .login form {
     display: flex;
     flex-direction: column;
+    align-items: center;
     width: 100%;
     padding-top: 10px;
     gap: 10px;
 }
 
-.login input{
+.login .form-control-input input {
     margin-top: 5px;
-    background-color: var(--cor-fundo-input);  
+    background-color: white; 
+    opacity: 0.5;
     height: 40px;
-    outline: none;
     padding-left: 8px;
-    color: white;
+    color: black;
     font-size: 20px;
+    font-family: 'Montserrat', sans-serif;   
+    border: 2px solid black;
+    border-radius: 15px;
+    outline: none;
+    display: block;
+    width: 100%;
 }
 
 .login img{
-    width: 220px;
-    height: auto;
+    width: 400px;
+    height: 200px
 }
-
 
 .login .form-control {
     margin-bottom: 10px;
     position: relative;
 }
 
-.login .form-control-input input {
-    border: 2px solid #3E445B;
-    border: none;
-    outline: none;
-    display: block;
-    font-size: 17px;
-    width: 100%;
-}
 
 .login .form-control-input.error-input input {
     border: 2px solid #DB5A5A;
@@ -90,13 +81,13 @@ body {
     font-size: 14px;
 }
 
-.login .form button {
-    background-color: rgb(44, 44, 171);
-    border: none;
-    color: white;
-    font-weight: bold;
-    padding: 10px;
+.botao-entrar {
     cursor: pointer;
-    font-size: 15px;
-    margin-top: 5px;
+    outline: none; 
+    max-width: 80px;
+    max-height: 80px;
+}
+  
+.botao-entrar:hover {
+    opacity: 0.8;
 }

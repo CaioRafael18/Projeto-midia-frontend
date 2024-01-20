@@ -1,7 +1,9 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './Cadastro.css'
 import { useNavigate } from 'react-router-dom'
 import api from '../../services/api'
+import Logo from '../image/logosara.png'
+import simboloMidia from '../image/simbolo-midia.png'
 
 const Cadastro = () => {
   const [title, setTitle] = useState('')
@@ -10,6 +12,14 @@ const Cadastro = () => {
   const navigate = useNavigate()
   const [allLinks, setAllLinks] = useState([]);
  
+  useEffect(() => {
+    document.body.classList.add('cadastro');
+    return () => {
+      document.body.classList.remove('cadastro');
+    };
+  }, []);
+
+
   async function handleSubmit(e) {
     e.preventDefault();
   
@@ -19,18 +29,31 @@ const Cadastro = () => {
       mes
     });
   
-    // Limpe os campos do formulário
     setTitle('');
     setDescricao('');
     setMes('');
   
-    // Navegue para a página '/Home'
     navigate('/Home');
+  }
+
+  
+  function handleHome(e){
+    e.preventDefault()
+    navigate('/Home')
   }
 
   return (
     <>
       <div>
+      <section className="section">
+        <div className="logo_home">
+          <img src={Logo} alt='Logo da Sara' onClick={handleHome}/>
+        </div>
+        <div className='section_texto'>
+          <img src={simboloMidia} alt='Midia'/>
+        </div>
+      </section>
+
         <form className="container__formulario" data-formulario onSubmit={handleSubmit}>
             <h2 className="formulario__titulo">Adicione um novo Arquivo!</h2>
                 <div className="formulario__campo">
@@ -71,6 +94,8 @@ const Cadastro = () => {
                   type="submit"
                  />
         </form>
+
+        <footer className="rodape"></footer>
      </div>
     </>
   )

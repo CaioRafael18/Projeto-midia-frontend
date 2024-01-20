@@ -3,10 +3,13 @@ import { useNavigate } from 'react-router-dom';
 import Meses from '../Components/Meses';
 import ListaLinks from '../Components/ListaLinks';
 import api from '../../services/api';
-import { FaMagnifyingGlass } from 'react-icons/fa6';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Pagination from 'react-bootstrap/Pagination';
 import './Home.css';
+import Logo from '../image/logosara.png'
+import botaoCadastro from '../image/botao-cadastro.png'
+import simboloMidia from '../image/simbolo-midia.png'
+
 
 const Home = () => {
   const [allLinks, setAllLinks] = useState([]);
@@ -17,6 +20,13 @@ const Home = () => {
   const linksPerPage = 7;
   const totalPages = Math.ceil(allLinks.length / linksPerPage);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    document.body.classList.add('home');
+    return () => {
+      document.body.classList.remove('home');
+    };
+  }, []);
 
   useEffect(() => {
     async function getAllLinks() {
@@ -30,8 +40,8 @@ const Home = () => {
   useEffect(() => {
     const startIndex = (currentPage - 1) * linksPerPage;
     const endIndex = startIndex + linksPerPage;
-  
-    // Aplica o filtro e a pesquisa diretamente na lista original
+    const selectedMonthLower = selectedMonth.toLowerCase();
+
     let filtered = allLinks;
   
     if (searchTerm) {
@@ -43,50 +53,39 @@ const Home = () => {
       );
     }
   
-    // Converte selectedMonth para minúsculas
-    const selectedMonthLower = selectedMonth.toLowerCase();
-  
-    // Aplica o filtro do mês
     if (selectedMonth) {
-      console.log('Filtrando por mês:', selectedMonth);
       filtered = filtered.filter(link => {
-        // Converte o valor do mês no link para minúsculas
         const linkMonthLower = link.mes.toLowerCase();
         const isMatchingMonth = linkMonthLower === selectedMonthLower;
-        console.log(`Link: ${link.title}, Mês: ${link.mes}, Coincide: ${isMatchingMonth}`);
         return isMatchingMonth;
       });
     }
   
-    // Reverte a ordem da lista completa
     const reversedList = filtered.slice().reverse();
-  
-    // Exibir apenas os links da página corrente
     const linksDaPagina = reversedList.slice(startIndex, endIndex);
   
     setFilteredLinks(linksDaPagina);
-    console.log('filteredLinks:', filteredLinks);
-  }, [filteredLinks, currentPage, allLinks, searchTerm, selectedMonth]);
+  }, [currentPage, allLinks, searchTerm, selectedMonth]);
 
 
   async function handleDelete(id) {
-    await api.delete(`/links/${id}`);
-    setAllLinks(prevLinks => prevLinks.filter(link => link._id !== id));
+    try {
+      const accessToken = 'seuTokenAqui'; 
+  
+      await api.delete(`/links/${id}`, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      });
+      setAllLinks(prevLinks => prevLinks.filter(link => link._id !== id));  
+    } catch (error) {
+      console.error('Erro ao deletar o link:', error);
+    }
   }
 
   function handleFiltro(mes) {
-    console.log(`Filtrar por mês: ${mes}`);
     setSelectedMonth(mes);
     setCurrentPage(1);
-  }
-
-  function handleSearch() {
-    setCurrentPage(1);
-  }
-
-  function handleSearchButton() {
-    console.log('Botão de Pesquisa clicado');
-    handleSearch();
   }
 
   function handleButton(e) {
@@ -147,13 +146,17 @@ const Home = () => {
   return (
     <>
       <section className="section">
-          <h1 className="section_item"> MIDIAS</h1>
+        <div className="logo_home">
+          <img src={Logo} alt='Logo da Sara'/>
+        </div>
+        <div className='section_texto'>
+          <img src={simboloMidia} alt='Midia'/>
+        </div>
       </section>
 
       <main className="box">
         <div className="box_grupo">
           <ul className='box_lista'>
-          
             {filteredLinks.map(data => (
               <ListaLinks
                 key={data._id}
@@ -167,26 +170,21 @@ const Home = () => {
         <aside className="arquivos">
           <div className="pesquisa">
             <input
-              type="search"
               className="arquivos_pesquisa"
               placeholder="Pesquisar"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
             />
-
-            <button className="botao_lupa" onClick={handleSearchButton}>
-              <FaMagnifyingGlass />
-            </button>
-
             <div className="box_botao">
-              <button
+              <img
+                src={botaoCadastro}
                 className="botao_arquivo"
                 onClick={handleButton}
-              >+</button>
+              ></img>
             </div>
           </div>
 
-          <h3 className='h3_texto'>ARQUIVOS</h3>
+          <h3 className='h3_texto'>MESES</h3>
           <ul className="arquivos_lista">
             <Meses handleFiltro={handleFiltro}/>
           </ul>
@@ -196,7 +194,7 @@ const Home = () => {
       <Pagination className="paginacao">
         <Pagination.Prev onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))} />
         {generatePaginationItems()}
-        <Pagination.Next
+        <Pagination.Next 
           onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
         />
       </Pagination>
