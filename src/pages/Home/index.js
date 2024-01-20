@@ -66,7 +66,7 @@ const Home = () => {
   
     setFilteredLinks(linksDaPagina);
     console.log('filteredLinks:', filteredLinks);
-  }, [currentPage, allLinks, searchTerm, selectedMonth]);
+  }, [filteredLinks, currentPage, allLinks, searchTerm, selectedMonth]);
 
 
   async function handleDelete(id) {
