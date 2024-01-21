@@ -17,7 +17,7 @@ const Home = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedMonth, setSelectedMonth] = useState('');
-  const linksPerPage = 7;
+  const linksPerPage = 9;
   const totalPages = Math.ceil(allLinks.length / linksPerPage);
   const navigate = useNavigate();
 
@@ -154,6 +154,22 @@ const Home = () => {
         </div>
       </section>
 
+      <div className="pesquisa_mobile">
+        <input
+          className="arquivos_pesquisa_mobile"
+          placeholder="Pesquisar"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
+        <div className="box_botao_mobile">
+          <img
+            src={botaoCadastro}
+            className="botao_arquivo"
+            onClick={handleButton}
+          ></img>
+        </div>
+      </div>
+
       <main className="box">
         <div className="box_grupo">
           <ul className='box_lista'>
@@ -198,6 +214,13 @@ const Home = () => {
           onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
         />
       </Pagination>
+
+      <aside className="arquivos_mobile">
+        <h3 className='h3_texto_mobile'>MESES</h3>
+        <ul className="arquivos_lista_mobile">
+          <Meses handleFiltro={handleFiltro}/>
+        </ul>
+      </aside>
 
 
       <footer className="rodape"></footer>

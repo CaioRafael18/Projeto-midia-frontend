@@ -39,10 +39,11 @@ body.cadastro{
     border-radius: 15px;
     padding-left: 8px;
     font-size: 20px;
+    box-sizing: border-box;
 }
 
 .campo__etiqueta {
-    font-size: 20px;
+    font-size: 30px;
     font-family: var(--fonte-principal);
 }
 

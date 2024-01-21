@@ -10,8 +10,8 @@ function Meses({ handleFiltro }) {
     <>
       {meses.map((mes, index) => (
         <li className="arquivos_item" key={index}>
-          <a href="#" onClick={() => handleFiltro(mes)}>
-            <span>{mes}</span>
+          <a className="arquivos_item_a" href="#" onClick={() => handleFiltro(mes)}>
+            <span className="arquivos_item_span">{mes}</span>
           </a>
         </li>
       ))}

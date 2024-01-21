@@ -12,7 +12,7 @@ const ListaLinks = ({data, handleDelete}) => {
     <>
     <li className="box_item">
       <div className='box_descricao'>
-        <a  href={data.descricao}>
+        <a className='box_texto' href={data.descricao}>
           <strong>{data.title}</strong> 
         </a>
         

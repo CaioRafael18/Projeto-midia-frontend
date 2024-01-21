@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import './Login.css'
 import botaoEntrar from '../image/botao-entrar.png'
-import LogoSara from '../image/LOGO_SARA GUARABIRA_preta.png'
+import LogoSara from '../image/logosara.png'
 import { useNavigate } from 'react-router-dom'
 
 const Login = () => {
@@ -31,7 +31,7 @@ const Login = () => {
 
   return (
     <div className='Container'> 
-      <div className="login">
+      <div className="container_login">
         <div className="image_login">
             <img src={LogoSara} alt='Logo da Sara'/>
         </div>
