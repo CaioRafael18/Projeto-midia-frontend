@@ -3,8 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import Meses from '../Components/Meses';
 import ListaLinks from '../Components/ListaLinks';
 import api from '../../services/api';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import Pagination from 'react-bootstrap/Pagination';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './Home.css';
 import Logo from '../image/logosara.png'
 import botaoCadastro from '../image/botao-cadastro.png'
@@ -13,12 +13,12 @@ import simboloMidia from '../image/simbolo-midia.png'
 
 const Home = () => {
   const [allLinks, setAllLinks] = useState([]);
-  const [filteredLinks, setFilteredLinks] = useState([]);
-  const [searchTerm, setSearchTerm] = useState('');
-  const [currentPage, setCurrentPage] = useState(1);
-  const [selectedMonth, setSelectedMonth] = useState('');
-  const linksPerPage = 9;
-  const totalPages = Math.ceil(allLinks.length / linksPerPage);
+  const [filtrarLink, setFiltrarLink] = useState([]);
+  const [pesquisa, setPesquisa] = useState('');
+  const [paginaAtual, setPaginaAtual] = useState(1);
+  const [mesSelecionado, setMesSelecionado] = useState('');
+  const linksPorPagina = 9;
+  const totalPaginas = Math.ceil(allLinks.length / linksPorPagina);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -38,34 +38,34 @@ const Home = () => {
   }, []);
 
   useEffect(() => {
-    const startIndex = (currentPage - 1) * linksPerPage;
-    const endIndex = startIndex + linksPerPage;
-    const selectedMonthLower = selectedMonth.toLowerCase();
+    const inicioIndex = (paginaAtual - 1) * linksPorPagina;
+    const finalIndex = inicioIndex + linksPorPagina;
+    const mesSelecionadoLower = mesSelecionado.toLowerCase();
 
-    let filtered = allLinks;
+    let filtrado = allLinks;
   
-    if (searchTerm) {
-      const searchTermLower = searchTerm.toLowerCase();
-      filtered = filtered.filter(
+    if (pesquisa) {
+      const pesquisaLower = pesquisa.toLowerCase();
+      filtrado = filtrado.filter(
         link =>
-          link.title.toLowerCase().includes(searchTermLower) ||
-          link.descricao.toLowerCase().includes(searchTermLower)
+          link.title.toLowerCase().includes(pesquisaLower) ||
+          link.descricao.toLowerCase().includes(pesquisaLower)
       );
     }
   
-    if (selectedMonth) {
-      filtered = filtered.filter(link => {
-        const linkMonthLower = link.mes.toLowerCase();
-        const isMatchingMonth = linkMonthLower === selectedMonthLower;
-        return isMatchingMonth;
+    if (mesSelecionado) {
+      filtrado = filtrado.filter(link => {
+        const linkMesLower = link.mes.toLowerCase();
+        const mesCorrespondente = linkMesLower === mesSelecionadoLower;
+        return mesCorrespondente;
       });
     }
   
-    const reversedList = filtered.slice().reverse();
-    const linksDaPagina = reversedList.slice(startIndex, endIndex);
+    const listaInvertida = filtrado.slice().reverse();
+    const linksDaPagina = listaInvertida.slice(inicioIndex, finalIndex);
   
-    setFilteredLinks(linksDaPagina);
-  }, [currentPage, allLinks, searchTerm, selectedMonth]);
+    setFiltrarLink(linksDaPagina);
+  }, [paginaAtual, allLinks, pesquisa, mesSelecionado]);
 
 
   async function handleDelete(id) {
@@ -77,15 +77,15 @@ const Home = () => {
           Authorization: `Bearer ${accessToken}`,
         },
       });
-      setAllLinks(prevLinks => prevLinks.filter(link => link._id !== id));  
+      setAllLinks(paginaAnterior => paginaAnterior.filter(link => link._id !== id));  
     } catch (error) {
       console.error('Erro ao deletar o link:', error);
     }
   }
 
   function handleFiltro(mes) {
-    setSelectedMonth(mes);
-    setCurrentPage(1);
+    setMesSelecionado(mes);
+    setPaginaAtual(1);
   }
 
   function handleButton(e) {
@@ -93,54 +93,60 @@ const Home = () => {
     navigate('/Cadastro');
   }
 
+  function handleHome(e){
+    e.preventDefault()
+    navigate('/Home')
+  }
+
+
   const generatePaginationItems = () => {
-    const totalPages = Math.ceil(allLinks.length / linksPerPage);
-    const maxPagesToShow = 5;
-    const adjacentPages = 1;
-    let pages = [];
+    const totalPaginas = Math.ceil(allLinks.length / linksPorPagina);
+    const maxPaginasExibidas = 5;
+    const paginasAdjacentes = 1;
+    let paginas = [];
 
-    if (totalPages <= maxPagesToShow) {
-      for (let i = 1; i <= totalPages; i++) {
-        const isCurrentPage = i === currentPage;
+    if (totalPaginas <= maxPaginasExibidas) {
+      for (let i = 1; i <= totalPaginas; i++) {
+        const ispaginaAtual = i === paginaAtual;
 
-        pages.push(
+        paginas.push(
           <Pagination.Item
             key={i}
-            active={isCurrentPage}
-            onClick={() => setCurrentPage(i)}
+            active={ispaginaAtual}
+            onClick={() => setPaginaAtual(i)}
           >
             {i}
           </Pagination.Item>
         );
       }
     } else {
-      const startPage = Math.max(1, currentPage - adjacentPages);
-      const endPage = Math.min(currentPage + adjacentPages, totalPages);
+      const paginaInicial = Math.max(1, paginaAtual - paginasAdjacentes);
+      const paginaFinal = Math.min(paginaAtual + paginasAdjacentes, totalPaginas);
 
-      for (let i = startPage; i <= endPage; i++) {
-        const isCurrentPage = i === currentPage;
+      for (let i = paginaInicial; i <= paginaFinal; i++) {
+        const ispaginaAtual = i === paginaAtual;
 
-        pages.push(
+        paginas.push(
           <Pagination.Item
             key={i}
-            active={isCurrentPage}
-            onClick={() => setCurrentPage(i)}
+            active={ispaginaAtual}
+            onClick={() => setPaginaAtual(i)}
           >
             {i}
           </Pagination.Item>
         );
       }
 
-      if (currentPage - adjacentPages > 1) {
-        pages.unshift(<Pagination.Ellipsis key="leftEllipsis" />);
+      if (paginaAtual - paginasAdjacentes > 1) {
+        paginas.unshift(<Pagination.Ellipsis key="leftEllipsis" />);
       }
 
-      if (currentPage + adjacentPages < totalPages) {
-        pages.push(<Pagination.Ellipsis key="rightEllipsis" />);
+      if (paginaAtual + paginasAdjacentes < totalPaginas) {
+        paginas.push(<Pagination.Ellipsis key="rightEllipsis" />);
       }
     }
 
-    return pages;
+    return paginas;
   };
 
   return (
@@ -158,8 +164,8 @@ const Home = () => {
         <input
           className="arquivos_pesquisa_mobile"
           placeholder="Pesquisar"
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
+          value={pesquisa}
+          onChange={(e) => setPesquisa(e.target.value)}
         />
         <div className="box_botao_mobile">
           <img
@@ -173,7 +179,7 @@ const Home = () => {
       <main className="box">
         <div className="box_grupo">
           <ul className='box_lista'>
-            {filteredLinks.map(data => (
+            {filtrarLink.map(data => (
               <ListaLinks
                 key={data._id}
                 data={data}
@@ -188,8 +194,8 @@ const Home = () => {
             <input
               className="arquivos_pesquisa"
               placeholder="Pesquisar"
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
+              value={pesquisa}
+              onChange={(e) => setPesquisa(e.target.value)}
             />
             <div className="box_botao">
               <img
@@ -208,10 +214,10 @@ const Home = () => {
       </main>
 
       <Pagination className="paginacao">
-        <Pagination.Prev onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))} />
+        <Pagination.Prev onClick={() => setPaginaAtual(prev => Math.max(prev - 1, 1))} />
         {generatePaginationItems()}
         <Pagination.Next 
-          onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+          onClick={() => setPaginaAtual(prev => Math.min(prev + 1, totalPaginas))}
         />
       </Pagination>
 

@@ -84,16 +84,13 @@ body.home{
 .box_descricao{
     margin-top: 30px;
     display: flex;
+    justify-content: space-between;
     align-items: center;
     height: 30px;
 }
 
 
 .iconeDelete{
-    position: absolute;
-    top: 50%; 
-    left: 766px;
-    transform: translateY(-50%); 
     width: 100px;
     height: 100px;
 }

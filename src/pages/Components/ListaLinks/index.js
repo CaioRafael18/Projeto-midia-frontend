@@ -26,7 +26,7 @@ const ListaLinks = ({data, handleDelete}) => {
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Atenção!</Modal.Title>
+          <Modal.Title>ATENÇÃO!</Modal.Title>
         </Modal.Header>
         <Modal.Body>Tem certeza que deseja excluir?</Modal.Body>
         <Modal.Footer>

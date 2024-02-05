@@ -4,13 +4,13 @@ import { useNavigate } from 'react-router-dom'
 import api from '../../services/api'
 import Logo from '../image/logosara.png'
 import simboloMidia from '../image/simbolo-midia.png'
+import ListaMeses from '../Components/listaMeses'
 
 const Cadastro = () => {
   const [title, setTitle] = useState('')
   const [descricao, setDescricao] = useState('')
   const [mes, setMes] = useState('')
   const navigate = useNavigate()
-  const [allLinks, setAllLinks] = useState([]);
  
   useEffect(() => {
     document.body.classList.add('cadastro');
@@ -19,23 +19,26 @@ const Cadastro = () => {
     };
   }, []);
 
-
   async function handleSubmit(e) {
     e.preventDefault();
   
-    const response = await api.post('/links', {
-      title,
-      descricao,
-      mes
-    });
+    try {
+      const response = await api.post('/links', {
+        title,
+        descricao,
+        mes
+      });
   
-    setTitle('');
-    setDescricao('');
-    setMes('');
+      setTitle('');
+      setDescricao('');
+      setMes('');
   
-    navigate('/Home');
+      navigate('/Home');
+    } catch (error) {
+      alert('Ocorreu um erro ao enviar o formulário. Por favor, verifique se todos os campos foram preenchidos corretamente.');
+      console.error('Erro ao enviar formulário:', error);
+    }
   }
-
   
   function handleHome(e){
     e.preventDefault()
@@ -57,13 +60,14 @@ const Cadastro = () => {
         <form className="container__formulario" data-formulario onSubmit={handleSubmit}>
             <h2 className="formulario__titulo">Adicione um novo Arquivo!</h2>
                 <div className="formulario__campo">
-                    <label className="campo__etiqueta">Titulo</label>
+                    <label className="campo__etiqueta">Título</label>
                     <input 
                       className="campo__escrita" 
                       required 
                       placeholder="Titulo"
                       value={title}
                       onChange={e => setTitle(e.target.value)}
+                      title="Por favor, preencha este campo."
                     />
                 </div>
 
@@ -77,21 +81,19 @@ const Cadastro = () => {
                       onChange={e => setDescricao(e.target.value)}
                     />
                 </div>
-                
+
                 <div className="formulario__campo">
-                    <label className="campo__etiqueta">Mes</label>
-                    <input 
-                      className="campo__escrita" 
-                      required
-                      placeholder="Mes"
-                      value={mes}
-                      onChange={e => setMes(e.target.value)}
-                    />
+                  <label className="campo__etiqueta">Mês</label>
+                  <ListaMeses 
+                    value={mes}
+                    onChange={setMes} 
+                  />
                 </div>
 
                 <input 
                   className="formulario__botao" 
                   type="submit"
+                  value={'Salvar'}
                  />
         </form>
 

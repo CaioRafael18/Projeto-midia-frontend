@@ -6,7 +6,7 @@ body.cadastro{
     padding: 0;
     box-sizing: border-box;
     overflow-x: hidden;
-    font-family: 'Montserrat', sans-serif;   
+    font-family: var(--fonte-principal);
 }
 
 .container__formulario {
@@ -20,11 +20,12 @@ body.cadastro{
 
 .formulario__titulo {
     font-weight: bold;
-    font-size: 21px;
-    
+    font-size: 29px;
 }
 
 .formulario__campo{
+    display: flex;
+    flex-direction: column;
     margin-top: 20px;
     padding: 10px;
 }
@@ -44,6 +45,10 @@ body.cadastro{
 
 .campo__etiqueta {
     font-size: 30px;
+    font-family: var(--fonte-principal);
+}
+
+.label_meses{
     font-family: var(--fonte-principal);
 }
 
