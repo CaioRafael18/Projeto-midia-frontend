@@ -204,7 +204,7 @@ body.home{
 
 .arquivos_item_a {
     text-decoration: none;
-    color: inherit; /* Garante que a cor do link seja herdada */
+    color: inherit;
 }
 
 .pesquisa{
@@ -217,26 +217,26 @@ body.home{
 .arquivos_pesquisa{
     height: 30px;
     width: 100%;
-    padding-left: 10px;
+    padding: 0px 25px 0px 10px;
     outline: none;
     border: 2px solid black;
     border-radius: 10px;
     background-image: url(../image/search.png);
     background-size: 20px 20px;
-    background-position: 130px center;
+    background-position: right center;
     background-repeat: no-repeat;
 }
 
 .arquivos_pesquisa_mobile{
     height: 30px;
     width: 50%;
-    padding-left: 10px;
+    padding: 0px 25px 0px 10px;
     outline: none;
     border: 2px solid black;
     border-radius: 10px;
     background-image: url(../image/search.png);
     background-size: 20px 20px;
-    background-position: 167px center;
+    background-position: right center;
     background-repeat: no-repeat; 
 }
 
@@ -315,6 +315,8 @@ body.home{
     }
 
     .iconeDelete{
+        width: 45px;
+        height: 45px;
         left: 250px;
     }
 
@@ -325,7 +327,6 @@ body.home{
     .pesquisa_mobile{
         display: flex;
     }
-
 
     .h3_texto_mobile,
     .arquivos_lista_mobile {
@@ -341,16 +342,6 @@ body.home{
     .box_texto{
         width: 250px;
         padding: 0px;
-    }
-}
-
-@media (min-width: 601px) {
-    .arquivos_mobile {
-      display: none;
-    }
-
-    .arquivos_pesquisa_mobile{
-        display: none;
     }
 }
 
