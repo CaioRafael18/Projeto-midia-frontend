@@ -89,14 +89,16 @@ body.home{
     height: 30px;
 }
 
+.IconesLinks{
+    display: flex;
+    align-items: center;
+    cursor: pointer;
 
-.iconeDelete{
-    width: 100px;
-    height: 100px;
 }
 
-.iconeDelete:hover{
-    cursor: pointer;
+.iconeDelete{
+    width: 90px;
+    height: 90px;
 }
 
 .categoria{
@@ -123,7 +125,6 @@ body.home{
     font-weight: bolder;
     font-family: 'Montserrat', sans-serif;  
 }
-
 
 .arquivos{
     display: flex;
@@ -294,7 +295,7 @@ body.home{
     display: none;
 }
 
-@media(max-width: 420px){
+@media(max-width: 600px){
 
     .box{
         flex-direction: column;
@@ -343,12 +344,32 @@ body.home{
     }
 }
 
-@media (min-width: 421px) {
+@media (min-width: 601px) {
     .arquivos_mobile {
       display: none;
     }
 
     .arquivos_pesquisa_mobile{
         display: none;
+    }
+}
+
+@media (min-width: 601px) and (max-width: 1024px) {
+    .box_item{
+        gap: 15px;
+    }
+
+    .box_lista{
+        font-size: 20px;    
+        margin-left: 0px;
+    }
+    .h3_texto_mobile,
+    .arquivos_lista_mobile {
+        display: flex;
+        flex-direction: column; 
+        align-items: center; 
+    }
+    .arquivos_mobile{
+        display: flex;
     }
 }

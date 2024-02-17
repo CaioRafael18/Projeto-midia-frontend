@@ -12,6 +12,7 @@ const RoutesApp = () => {
                     <Route path="/Home" element={<Home/>}/>
                     <Route path="/" element={<Login/>}/>
                     <Route path="/Cadastro" element={<Cadastro/>}/>
+                    <Route path="/Cadastro/:id" element={<Cadastro/>}/>
                 </Routes>
             </Fragment>
         </BrowserRouter>

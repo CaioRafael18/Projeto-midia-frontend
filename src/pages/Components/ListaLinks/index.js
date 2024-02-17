@@ -2,11 +2,19 @@ import React, { useState } from 'react'
 import iconeDelete from '../../image/icone-lixeira.png'
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
+import { FiEdit } from "react-icons/fi";
+import { useNavigate } from 'react-router-dom';
+
 
 const ListaLinks = ({data, handleDelete}) => {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  const navigate = useNavigate()
+
+  function handleEdit(id){
+    navigate(`/Cadastro/${id}`, {state: {linkData: data}})
+  }
 
   return (
     <>
@@ -15,13 +23,20 @@ const ListaLinks = ({data, handleDelete}) => {
         <a className='box_texto' href={data.descricao}>
           <strong>{data.title}</strong> 
         </a>
-        
-        <img 
-          className='iconeDelete'
-          src={iconeDelete} 
-          onClick={() => handleShow()}
-        >
-        </img>
+
+        <div className='IconesLinks'>
+          <FiEdit
+            className='iconeEdit'
+            onClick={() => handleEdit(data._id)}
+          />
+
+          <img 
+            className='iconeDelete'
+            src={iconeDelete} 
+            onClick={() => handleShow()}
+          >
+          </img>
+        </div>
       </div>
 
       <Modal show={show} onHide={handleClose}>

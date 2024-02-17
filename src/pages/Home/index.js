@@ -93,12 +93,6 @@ const Home = () => {
     navigate('/Cadastro');
   }
 
-  function handleHome(e){
-    e.preventDefault()
-    navigate('/Home')
-  }
-
-
   const generatePaginationItems = () => {
     const totalPaginas = Math.ceil(allLinks.length / linksPorPagina);
     const maxPaginasExibidas = 5;
